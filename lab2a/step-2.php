@@ -15,7 +15,7 @@ $_SESSION['fullname'] = $fullname;
 $_SESSION['email'] = $email;
 $_SESSION['password'] = $hashedPassword;
 
-dump_session();
+
 
 ?>
 <html>

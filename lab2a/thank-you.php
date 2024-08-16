@@ -24,7 +24,7 @@ function calculateAge($birthdate) {
 
 $age = calculateAge($_SESSION['birthdate']);
 
-dump_session();
+
 
 session_destroy();
 ?>

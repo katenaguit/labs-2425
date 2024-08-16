@@ -15,7 +15,7 @@ $_SESSION['birthdate'] = $formattedBirthdate;
 $_SESSION['sex'] = $sex;
 $_SESSION['address'] = $address;
 
-dump_session();
+
 ?>
 <html>
 <head>
