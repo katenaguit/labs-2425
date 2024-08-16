@@ -14,6 +14,16 @@ $_SESSION['agree'] = $agree;
 
 $form_data = $_SESSION;
 
+// Calculate the age based on the birthdate
+function calculateAge($birthdate) {
+    $birthDate = new DateTime($birthdate);
+    $currentDate = new DateTime();
+    $age = $birthDate->diff($currentDate)->y;
+    return $age;
+}
+
+$age = calculateAge($_SESSION['birthdate']);
+
 dump_session();
 
 session_destroy();
@@ -57,6 +67,10 @@ session_destroy();
             <?php
             endforeach;
             ?>
+                <tr>
+                    <th>Age</th>
+                    <td><?php echo $age; ?></td>
+                </tr>
             </tbody>
         </table>
       

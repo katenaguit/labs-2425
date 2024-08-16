@@ -8,7 +8,10 @@ $birthdate = $_POST['birthdate'];
 $sex = $_POST['sex'];
 $address = $_POST['address'];
 
-$_SESSION['birthdate'] = $birthdate;
+// Convert the birthdate to "June 15, 2001" format
+$formattedBirthdate = date("F j, Y", strtotime($birthdate));
+
+$_SESSION['birthdate'] = $formattedBirthdate;
 $_SESSION['sex'] = $sex;
 $_SESSION['address'] = $address;
 
@@ -33,16 +36,15 @@ dump_session();
       </div>
       <div class="p-section--shallow">
 
-
         <form action="thank-you.php" method="POST">
 
           <fieldset>
             <label>Contact Number</label>
-            <input type="text" name="contact_number" placeholder="+639123456789" />
+            <input type="text" name="contact_number" placeholder="+639123456789" required />
 
             <label>Program</label>
-            <select name="program">
-              <option disabled="disabled" selected="">Select an option</option>
+            <select name="program" required>
+              <option disabled="disabled" selected>Select an option</option>
               <option value="cs">Computer Science</option>
               <option value="it">Information Technology</option>
               <option value="is">Information Systems</option>
@@ -51,7 +53,7 @@ dump_session();
             </select>
 
             <label class="p-checkbox--inline">
-            <input type="checkbox" name="agree">
+              <input type="checkbox" name="agree" required>
             </label>
             I agree to the terms and conditions...
             
@@ -62,7 +64,6 @@ dump_session();
           </fieldset>
 
         </form>
-
 
       </div>
 
