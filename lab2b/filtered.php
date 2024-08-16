@@ -1,30 +1,35 @@
 <?php
 
-define('CUSTOMERS_FILE_PATH', 'customers-100.csv');
+define('CUSTOMERS_FILE_PATH', 'customers-100000.csv');
 
-function get_hundred_customers_data( $filter_letter )
-{
+function get_customers_data($filter_letter) {
+    $start_time = microtime(true); 
+
     $opened_file_handler = fopen(CUSTOMERS_FILE_PATH, 'r');
 
     $data = [];
     $headers = [];
     $row_count = 0;
     while (!feof($opened_file_handler)) {
-
         $row = fgetcsv($opened_file_handler, 1024);
         if (!empty($row)) {
             if ($row_count == 0) {
-                array_push($headers, $row);    
+                $headers = $row;
             } else {
                 if ($row[3][0] == $filter_letter) {
-                    array_push($data, $row);
+                    $data[] = $row;
                 }
             }
         }
-
         $row_count++;
-
     }
+
+    fclose($opened_file_handler); 
+
+    $end_time = microtime(true); 
+    $execution_time = $end_time - $start_time; 
+
+    echo "<p>Execution Time: {$execution_time} seconds</p>";
 
     return [
         'headers' => $headers,
@@ -34,7 +39,7 @@ function get_hundred_customers_data( $filter_letter )
 
 $chosen_letter = $_GET['letter'];
 
-$customers = get_hundred_customers_data($chosen_letter);
+$customers = get_customers_data($chosen_letter);
 
 ?>
 <html>
@@ -83,7 +88,6 @@ The dataset is retrieved from this URL <a href="https://www.datablist.com/learn/
     ?>
     </tbody>
 </table>
-
 
 </body>
 </html>
