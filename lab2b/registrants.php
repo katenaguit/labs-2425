@@ -1,6 +1,6 @@
 <?php
 $csvFilePath = 'registrant.csv';
-s
+
 if (!file_exists($csvFilePath)) {
     die('File not found');
 }
