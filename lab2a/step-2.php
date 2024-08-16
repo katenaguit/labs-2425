@@ -1,22 +1,11 @@
 <?php
-
 require "helpers/helper-functions.php";
-
 session_start();
 
-$fullname = $_POST['fullname'];
-$email = $_POST['email'];
-$password = $_POST['password'];
-
-// Encrypt (hash) the password before saving it to the session variables
-$hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-
-$_SESSION['fullname'] = $fullname;
-$_SESSION['email'] = $email;
-$_SESSION['password'] = $hashedPassword;
-
-
-
+$_SESSION['fullname'] = $_POST['fullname'];
+$_SESSION['birthdate'] = $_POST['birthdate'];
+$_SESSION['contact_number'] = $_POST['contact_number'];
+$_SESSION['sex'] = $_POST['sex'];
 ?>
 <html>
 <head>
@@ -31,43 +20,39 @@ $_SESSION['password'] = $hashedPassword;
   <div class="row--50-50-on-large">
     <div class="col">
       <div class="p-section--shallow">
-        <h1>
-          Registration (Step 2/3)
-        </h1>
+        <h1>Registration (Step 2/3)</h1>
       </div>
       <div class="p-section--shallow">
-
         <form action="step-3.php" method="POST">
-
           <fieldset>
-            <label>Birthdate</label>
-            <input type="date" name="birthdate" required>
-
-            <label>Sex</label>
-            <br />
-            <input type="radio" name="sex" value="male" checked="checked" required>Male
-            <br />
-            <input type="radio" name="sex" value="female" required>Female
-            <br />
+            <label>Program</label>
+            <select name="program" required>
+              <option disabled="disabled" selected>Select an option</option>
+              <option value="cs">Computer Science</option>
+              <option value="it">Information Technology</option>
+              <option value="is">Information Systems</option>
+              <option value="se">Software Engineering</option>
+              <option value="ds">Data Science</option>
+            </select>
 
             <label>Complete Address</label>
             <textarea name="address" rows="3" required></textarea>
 
+            <input type="hidden" name="fullname" value="<?php echo $_SESSION['fullname']; ?>">
+            <input type="hidden" name="birthdate" value="<?php echo $_SESSION['birthdate']; ?>">
+            <input type="hidden" name="contact_number" value="<?php echo $_SESSION['contact_number']; ?>">
+            <input type="hidden" name="sex" value="<?php echo $_SESSION['sex']; ?>">
+
             <button type="submit">Next</button>
           </fieldset>
-
         </form>
-
       </div>
-
     </div>
-
     <div class="col">
       <div class="p-image-container--3-2 is-cover">
         <img class="p-image-container__image" src="https://www.auf.edu.ph/home/images/ittc.jpg" alt="">
       </div>
     </div>
-
   </div>
 </section>
 

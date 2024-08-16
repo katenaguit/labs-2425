@@ -1,7 +1,5 @@
 <?php
-
 require "helpers/helper-functions.php";
-
 session_start();
 ?>
 <html>
@@ -17,43 +15,39 @@ session_start();
   <div class="row--50-50-on-large">
     <div class="col">
       <div class="p-section--shallow">
-      <h1>
-      Registration (Step 1/3)
-      </h1>
+        <h1>Registration (Step 1/3)</h1>
       </div>
       <div class="p-section--shallow">
-
-
-
         <form action="step-2.php" method="POST">
+          <fieldset>
+            <label>Complete Name</label>
+            <input type="text" name="fullname" placeholder="John Doe" required>
 
-        <fieldset>
-          <label>Complete Name</label>
-          <input type="text" name="fullname" placeholder="John Doe" required>
+            <label>Birthday</label>
+            <input type="date" name="birthdate" required>
 
-          <label>Email address</label>
-          <input type="email" name="email" placeholder="example@canonical.com" autocomplete="email" required>
+            <label>Contact Number</label>
+            <input type="text" name="contact_number" placeholder="+639123456789" required />
 
-          <label>Password</label>
-          <input type="password" name="password" placeholder="******" autocomplete="current-password" required>
+            <label>Sex</label>
+            <br />
+            <input type="radio" name="sex" value="male" checked="checked" required>Male
+            <br />
+            <input type="radio" name="sex" value="female" required>Female
+            <br />
 
-          <button type="submit">Next</button>
-        </fieldset>
+            <input type="hidden" name="step" value="1">
 
-
+            <button type="submit">Next</button>
+          </fieldset>
         </form>
-
-
-
       </div>
     </div>
-
     <div class="col">
       <div class="p-image-container--3-2 is-cover">
         <img class="p-image-container__image" src="https://www.auf.edu.ph/home/images/ittc.jpg" alt="">
       </div>
     </div>
-
   </div>
 </section>
 
